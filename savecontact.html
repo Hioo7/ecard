@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Save Contact</title>
+  <style>
+    .save-contact-btn {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .save-contact-btn:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Save Contact</h1>
+  <button class="save-contact-btn" id="saveContactBtn">Save Contact</button>
+
+  <script>
+    document.getElementById('saveContactBtn').addEventListener('click', function() {
+      // Create the vCard data
+      const vCardData = `
+        BEGIN:VCARD
+        VERSION:3.0
+        FN:John Doe
+        ORG:Blue Ticks Innovations
+        TEL;TYPE=WORK,VOICE:+1234567890
+        EMAIL:johndoe@example.com
+        ADR;TYPE=WORK:;;123 Street Name;City;State;12345;Country
+        END:VCARD
+      `;
+
+      // Create a Blob from the vCard data
+      const blob = new Blob([vCardData], { type: 'text/vcard' });
+
+      // Create a link element
+      const link = document.createElement('a');
+
+      // Set the download attribute with a filename
+      link.href = URL.createObjectURL(blob);
+      link.download = 'contact.vcf';
+
+      // Append the link to the body (required for some browsers)
+      document.body.appendChild(link);
+
+      // Trigger the download
+      link.click();
+
+      // Remove the link element
+      document.body.removeChild(link);
+    });
+  </script>
+
+</body>
+</html>
