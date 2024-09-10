@@ -391,7 +391,7 @@ body .is-layout-grid>* {
     line-height: 1.6;
 }
 
-.footer{
-    color:#fff;
+footer{
     text-align: center;
+    color: #fff;
 }
